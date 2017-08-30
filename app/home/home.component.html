@@ -1,0 +1,24 @@
+<ActionBar title="Home">    
+</ActionBar>
+
+<GridLayout rows="auto,*" columns="">
+    <GridLayout row="0">
+        <StackLayout>
+            <Button text="enable Location" (tap)="enableLocationTap()"></Button>
+            <Button text="Get Current Location" (tap)="buttonGetLocationTap()"></Button>
+            <Label [text]="currentLocation"></Label>
+            <Label [text]="latitude"></Label>
+            <label [text]="longitude"></label>
+            <Label [text]="userName"></Label>
+            <Label [text]="userId"></Label>
+            <Label [text]="avatarUrl"></Label>
+            <Button text="Login With FaceBook" (tap)="login()"></Button>
+            <Button text="Log out of FaceBook" (tap)="logout()"></Button>
+            <Button text="Get Facebook Info" (tap)="getFBInfo()"></Button>
+            <Button text="Get Facebook Avatar URL" (tap)="getFBAvatar()"></Button>
+        </StackLayout>
+    </GridLayout>
+    <GridLayout row="1">
+        <Image [src]="avatarUrl" className="speaker-image" stretch="aspectFit"></Image>
+    </GridLayout>
+</GridLayout>

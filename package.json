@@ -1,0 +1,59 @@
+{
+  "description": "NativeScript Application",
+  "license": "SEE LICENSE IN <your-license-filename>",
+  "readme": "NativeScript Application",
+  "repository": "<fill-your-repository-here>",
+  "nativescript": {
+    "id": "org.nativescript.WhatsUr20",
+    "tns-android": {
+      "version": "3.1.1"
+    }
+  },
+  "dependencies": {
+    "@angular/animations": "4.2.5",
+    "@angular/common": "4.2.5",
+    "@angular/compiler": "4.2.5",
+    "@angular/core": "4.2.5",
+    "@angular/forms": "4.2.5",
+    "@angular/http": "4.2.5",
+    "@angular/platform-browser": "4.2.5",
+    "@angular/router": "4.2.5",
+    "nativescript-angular": "4.2.0",
+    "nativescript-geolocation": "3.0.1",
+    "nativescript-oauth": "^2.0.1",
+    "nativescript-theme-core": "1.0.4",
+    "reflect-metadata": "0.1.10",
+    "rxjs": "5.4.3",
+    "tns-core-modules": "3.1.1",
+    "zone.js": "0.8.16"
+  },
+  "devDependencies": {
+    "@angular/compiler-cli": "4.2.5",
+    "@ngtools/webpack": "~1.5.0",
+    "babel-traverse": "6.4.5",
+    "babel-types": "6.4.5",
+    "babylon": "6.4.5",
+    "copy-webpack-plugin": "~4.0.1",
+    "extract-text-webpack-plugin": "~3.0.0",
+    "lazy": "1.0.11",
+    "nativescript-css-loader": "~0.26.0",
+    "nativescript-dev-typescript": "0.5.0",
+    "nativescript-dev-webpack": "^0.7.3",
+    "raw-loader": "~0.5.1",
+    "resolve-url-loader": "~2.1.0",
+    "typescript": "2.4.2",
+    "webpack": "~3.2.0",
+    "webpack-bundle-analyzer": "^2.8.2",
+    "webpack-sources": "~1.0.1"
+  },
+  "name": "WhatsUr20",
+  "scripts": {
+    "ns-bundle": "ns-bundle",
+    "publish-ios-bundle": "npm run ns-bundle --ios --publish-app",
+    "generate-android-snapshot": "generate-android-snapshot --targetArchs arm,arm64,ia32 --install",
+    "start-android-bundle": "npm run ns-bundle --android --run-app",
+    "start-ios-bundle": "npm run ns-bundle --ios --run-app",
+    "build-android-bundle": "npm run ns-bundle --android --build-app",
+    "build-ios-bundle": "npm run ns-bundle --ios --build-app"
+  }
+}
