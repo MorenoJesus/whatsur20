@@ -1,7 +1,7 @@
 <ActionBar title="Home">    
 </ActionBar>
 
-<GridLayout rows="auto,*" columns="">
+<GridLayout rows="auto,*">
     <GridLayout row="0">
         <StackLayout>
             <Button text="enable Location" (tap)="enableLocationTap()"></Button>
@@ -18,7 +18,7 @@
             <Button text="Get Facebook Avatar URL" (tap)="getFBAvatar()"></Button>
         </StackLayout>
     </GridLayout>
-    <GridLayout row="1">
+    <GridLayout row="1" >
         <Image [src]="avatarUrl" className="speaker-image" stretch="aspectFit"></Image>
     </GridLayout>
 </GridLayout>
