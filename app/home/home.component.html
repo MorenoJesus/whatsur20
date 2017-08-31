@@ -9,16 +9,14 @@
             <Label [text]="currentLocation"></Label>
             <Label [text]="latitude"></Label>
             <label [text]="longitude"></label>
-            <Label [text]="userName"></Label>
-            <Label [text]="userId"></Label>
-            <Label [text]="avatarUrl"></Label>
-            <Button text="Login With FaceBook" (tap)="login()"></Button>
+            <Label [text]="fbUser.name"></Label>
+            <Label [text]="fbUser.id"></Label>
+            <Label [text]="fbUser.avatar"></Label>
             <Button text="Log out of FaceBook" (tap)="logout()"></Button>
-            <Button text="Get Facebook Info" (tap)="getFBInfo()"></Button>
-            <Button text="Get Facebook Avatar URL" (tap)="getFBAvatar()"></Button>
+            <Button text="Status Check" (tap)="statusCheck()"></Button>
         </StackLayout>
     </GridLayout>
     <GridLayout row="1" >
-        <Image [src]="avatarUrl" className="speaker-image" stretch="aspectFit"></Image>
+        <Image [src]="fbUser.avatar" className="speaker-image" stretch="aspectFit"></Image>
     </GridLayout>
 </GridLayout>

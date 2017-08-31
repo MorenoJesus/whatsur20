@@ -4,11 +4,8 @@ export class FacebookUser implements IFacebookUser {
     private _id: string;
     private _name: string;
     private _avatar: string;
-    private _accessToken: string;
-
-    constructor(public accessToken: string) {
-        this._accessToken = accessToken;
-    }
+    
+    constructor() { }
 
     get id(): string {
         return this._id;

@@ -1,4 +1,5 @@
-import { Component, NgZone } from "@angular/core";
+import { Component, NgZone, OnInit } from "@angular/core";
+import { RouterExtensions } from "nativescript-angular/router";
 import { LocationService } from "../services/locationService.service";
 import { FacebookGraphApi } from "../services/facebookApi/facebookGraphApi.service";
 import { FacebookUser } from "../services/facebookApi/facebookUser";
@@ -11,7 +12,7 @@ let appSettings = require("tns-core-modules/application-settings");
     templateUrl: "./home.component.html",
     providers: [LocationService, FacebookGraphApi]
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
     public latitude: number;
     public longitude: number;
     public currentLocation: string;
@@ -22,10 +23,28 @@ export class HomeComponent {
 
     constructor(private zone: NgZone
         , private location: LocationService
-        , private FB: FacebookGraphApi) {
+        , private FB: FacebookGraphApi
+        , private routerExtensions: RouterExtensions) {
+        this.fbUser = new FacebookUser();
         this.latitude = 0;
         this.longitude = 0;
         this.currentLocation = "";
+    }
+    ngOnInit() {
+        this.FB.getFacebookInfo2()
+            .subscribe(result => {
+                this.fbUser.id = result.id;
+                this.fbUser.name = result.name
+
+                this.FB.getFacebookAvatar(this.fbUser)
+                    .subscribe((result) => {
+                        this.fbUser.avatar = result.data.url;
+                    }, error => {
+                        console.log(error);
+                    })
+            }, error => {
+                console.log(error);
+            })
     }
 
     public enableLocationTap() {
@@ -45,31 +64,17 @@ export class HomeComponent {
             console.error(error);
         })
     }
-    public login() {
-        this.FB.login()
-            .then((result) => {
-                this.userName = result.name;
-                this.userId = result.id;
-            });
-    }
 
-    public getFBInfo() {
-        // this.FB.getFacebookInfo2()
-        //     .subscribe(result => {
-        //         this.userName = this.FB.user.name;
-        //         this.userId = this.FB.user.id;
-        //     })
-        this.FB.statusCheck();
-    }
-    public getFBAvatar() {
-        if (this.FB.user) {
-            this.FB.getFacebookAvatar()
-                .subscribe(result => {
-                    this.avatarUrl = this.FB.user.avatar//result.data.url;
-                })
-        }
-    }
     public logout() {
         this.FB.logOut();
+        this.routerExtensions.navigate(["/login"], {
+            transition: {
+                name: "slide"
+            }
+        })
+    }
+
+    public statusCheck() {
+        this.FB.statusCheck();
     }
 }

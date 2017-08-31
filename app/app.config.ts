@@ -1,3 +1,4 @@
-export const config = {
-    FACEBOOK_GRAPH_API_URL: "https://graph.facebook.com/v2.10"
+export class Config  {
+    static fbGraphUrl = "https://graph.facebook.com/v2.10";
+    static token = "";
 };
