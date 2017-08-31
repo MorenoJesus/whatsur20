@@ -1,6 +1,7 @@
 import { Component, NgZone } from "@angular/core";
 import { LocationService } from "../services/locationService.service";
 import { FacebookGraphApi } from "../services/facebookApi/facebookGraphApi.service";
+import { FacebookUser } from "../services/facebookApi/facebookUser";
 
 let appSettings = require("tns-core-modules/application-settings");
 
@@ -17,6 +18,7 @@ export class HomeComponent {
     public avatarUrl: string;
     public userName: string;
     public userId: string;
+    public fbUser: FacebookUser;
 
     constructor(private zone: NgZone
         , private location: LocationService
@@ -44,21 +46,25 @@ export class HomeComponent {
         })
     }
     public login() {
-        this.FB.logIntoFacebook();
+        this.FB.login()
+            .then((result) => {
+                this.userName = result.name;
+                this.userId = result.id;
+            });
     }
 
     public getFBInfo() {
-        this.FB.getFacebookInfo2()
-            .subscribe(result => {
-                this.userName = this.FB.user.name;
-                this.userId = this.FB.user.id;
-            })
+        // this.FB.getFacebookInfo2()
+        //     .subscribe(result => {
+        //         this.userName = this.FB.user.name;
+        //         this.userId = this.FB.user.id;
+        //     })
+        this.FB.statusCheck();
     }
     public getFBAvatar() {
         if (this.FB.user) {
             this.FB.getFacebookAvatar()
                 .subscribe(result => {
-                    console.log(result.data.url);
                     this.avatarUrl = this.FB.user.avatar//result.data.url;
                 })
         }
