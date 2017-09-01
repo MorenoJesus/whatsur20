@@ -1,6 +1,6 @@
 <StackLayout #container>
-    <StackLayout>
-            <Button text="Login With Facebook" class="fb-login-button" (tap)="login()"></Button>
-    </StackLayout>
+    <GridLayout columns="*, auto">
+        <Button col="0" text="Login With Facebook" class="fb-login-button" (tap)="login()"></Button>
+    </GridLayout>
     <Button text="Status Check" (tap)="statusCheck()"></Button>
 </StackLayout>

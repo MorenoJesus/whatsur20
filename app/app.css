@@ -9,9 +9,12 @@ In many cases you may want to use the NativeScript core theme instead
 of writing your own CSS rules. For a full list of class names in the theme
 refer to http://docs.nativescript.org/ui/theme.
 */
-@import 'nativescript-theme-core/css/core.light.css';
 
-.speaker-image {
+ActionBar {
+    background-color: black;
+    color: white;
+  }
+.user-image {
     horizontal-align: left;
     vertical-align: top;
     margin-right: 12;

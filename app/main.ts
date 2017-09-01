@@ -3,6 +3,7 @@ import { platformNativeScriptDynamic } from "nativescript-angular/platform";
 
 import { AppModule } from "./app.module";
 import * as tnsOAuthModule from 'nativescript-oauth';
+import { setStatusBarColors } from "./utils/status-bar-util";
 
 var facebookInitOptions : tnsOAuthModule.ITnsOAuthOptionsFacebook = {
     clientId: '525645837771853',
@@ -11,5 +12,5 @@ var facebookInitOptions : tnsOAuthModule.ITnsOAuthOptionsFacebook = {
 };
  
 tnsOAuthModule.initFacebook(facebookInitOptions);
-
+setStatusBarColors();
 platformNativeScriptDynamic().bootstrapModule(AppModule);

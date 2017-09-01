@@ -1,4 +1,5 @@
 import { Component, NgZone, OnInit } from "@angular/core";
+import { Page } from "ui/page";
 import { RouterExtensions } from "nativescript-angular/router";
 import { LocationService } from "../services/locationService.service";
 import { FacebookGraphApi } from "../services/facebookApi/facebookGraphApi.service";
@@ -24,20 +25,26 @@ export class HomeComponent implements OnInit {
     constructor(private zone: NgZone
         , private location: LocationService
         , private FB: FacebookGraphApi
-        , private routerExtensions: RouterExtensions) {
+        , private routerExtensions: RouterExtensions
+        , private page: Page) {
         this.fbUser = new FacebookUser();
         this.latitude = 0;
         this.longitude = 0;
         this.currentLocation = "";
     }
     ngOnInit() {
+        this.page.actionBarHidden = true;
+        console.log("In the home component!");
+
         this.FB.getFacebookInfo2()
             .subscribe(result => {
                 this.fbUser.id = result.id;
-                this.fbUser.name = result.name
+                this.fbUser.name = result.name;
+                console.log("User name and ID are set...");
 
                 this.FB.getFacebookAvatar(this.fbUser)
                     .subscribe((result) => {
+                        console.log("Avatar data set...");
                         this.fbUser.avatar = result.data.url;
                     }, error => {
                         console.log(error);
@@ -66,10 +73,12 @@ export class HomeComponent implements OnInit {
     }
 
     public logout() {
+        console.log("Logged out of Facebook!")
         this.FB.logOut();
         this.routerExtensions.navigate(["/login"], {
+            clearHistory: true,
             transition: {
-                name: "slide"
+                name: "slideBottom"
             }
         })
     }
